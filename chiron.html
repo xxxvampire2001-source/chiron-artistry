@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiron Artistry | Dreamy Winter Hub</title>
+    
+    <!-- Google Fonts Options -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Mountains+of+Christmas:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        :root {
+            --mint-glow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
+            --pink-glow: 0 0 25px #ff007f, 0 0 50px #ff007f;
+            --ice-blue: #a5f3fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background 0.4s, color 0.4s, font-family 0.3s, box-shadow 0.3s;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            /* Continuously shifting background colors */
+            background: linear-gradient(125deg, #07162c, #1b062a, #041d24, #260519);
+            background-size: 400% 400%;
+            animation: iceCreamAurora 12s ease-in-out infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ACTIVE SLOW COLOR CHANGING BACKGROUND --- */
+        @keyframes iceCreamAurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- FALLING SNOW CANVAS --- */
+        #snow-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- GLASS HUB MAIN CONTAINER --- */
+        .container {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 35px 25px;
+            border-radius: 32px;
+            border: 1px solid rgba(165, 243, 252, 0.25);
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* --- CUSTOMIZATION CONTROL PANEL --- */
+        .control-panel {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--ice-blue);
+            border: 1px solid rgba(165, 243, 252, 0.3);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-btn:hover {
+            background: #a5f3fc;
+            color: #051329;
+            box-shadow: 0 0 15px #a5f3fc;
+        }
+
+        /* --- NEON CHRISTMAS GLOW TYPOGRAPHY --- */
+        .profile-title {
+            font-size: 38px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 15px #ff007f, 0 0 30px #ff007f, 0 0 50px #ff007f;
+            margin-bottom: 4px;
+            animation: neonPulse 2.5s infinite alternate ease-in-out;
+        }
+
+        .profile-subtitle {
+            font-size: 14px;
+            color: var(--ice-blue);
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.7);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff007f; }
+            100% { text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc, 0 0 60px #00ffcc; }
+        }
+
+        /* --- HOLIDAY INTERACTIVE BUTTONS --- */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .link-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .youtube-btn:hover {
+            background: #ff0044;
+            box-shadow: 0 0 30px #ff0044;
+            transform: translateY(-3px);
+        }
+
+        .instagram-btn:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 0 30px #e1306c;
+            transform: translateY(-3px);
+        }
+
+        .x-btn:hover {
+            background: #111;
+            border-color: #fff;
+            box-shadow: 0 0 30px rgba(255,255,255,0.7);
+            transform: translateY(-3px);
+        }
+
+        .phone-btn {
+            background: rgba(0, 255, 204, 0.08);
+            border-color: rgba(0, 255, 204, 0.4);
+            color: #00ffcc;
+            text-shadow: 0 0 8px rgba(0,255,204,0.6);
+        }
+
+        .phone-btn:hover {
+            background: #00ffcc;
+            color: #000;
+            box-shadow: var(--mint-glow);
+            transform: translateY(-3px);
+            text-shadow: none;
+        }
+
+        /* --- LOWER CENTERED QR CODE --- */
+        .qr-section {
+            padding-top: 25px;
+            border-top: 1px solid rgba(165, 243, 252, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-text {
+            font-size: 12px;
+            color: var(--ice-blue);
+            margin-bottom: 15px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
+        }
+
+        .qr-holder {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(165, 243, 252, 0.6);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-holder:hover {
+            transform: scale(1.05);
+        }
+
+        #qrcode img, #qrcode canvas {
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* --- EXTRA CHRISTMAS GLOW MULTIPLIER MODE --- */
+        .extreme-glow .profile-title {
+            animation: intenseBlink 0.4s infinite alternate;
+        }
+        @keyframes intenseBlink {
+            0% { text-shadow: 0 0 25px #ff0055, 0 0 50px #ff0055; }
+            100% { text-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Moving Snow Effect Canvas Layer -->
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="container" id="main-hub">
+        
+        <!-- Live Customizer Controls -->
+        <div class="control-panel">
+            <button class="control-btn" onclick="toggleFont()">🎨 Font Style</button>
+            <button class="control-btn" onclick="toggleGlow()">🎄 Hyper Glow</button>
+        </div>
+
+        <!-- Ice Cream Shop Identity Header -->
+        <h1 class="profile-title" id="main-title">Chiron Artistry</h1>
+        <p class="profile-subtitle">🍦 Ice Cream & Sweet Artistry ❄️</p>
+
+        <!-- Dynamic Action Hub Links -->
+        <div class="links-container">
+            <a href="https://www.youtube.com/@Chiron_Artistry" target="_blank" class="link-card youtube-btn">
+                YouTube Paradise
+            </a>
+
+            <a href="https://www.instagram.com/chironartistry/" target="_blank" class="link-card instagram-btn">
+                Instagram Feed
+            </a>
+
+            <a href="https://x.com/ChironArtistry" target="_blank" class="link-card x-btn">
+                X Portal
+            </a>
+
+            <!-- Change +1234567890 to your shop phone line -->
+            <a href="tel:+1234567890" class="link-card phone-btn">
+                Order Delivery / Business Call
+            </a>
+        </div>
+
+        <!-- Centered Dynamic QR Code -->
+        <div class="qr-section">
+            <p class="qr-text">Scan for Menu & Socials</p>
+            <div class="qr-holder">
+                <div id="qrcode"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- FONT SWITCHING LOGIC ---
+        const fonts = ["'Fredoka', sans-serif", "'Mountains of Christmas', cursive", "'Quicksand', sans-serif"];
+        let currentFontIndex = 0;
+        
+        function toggleFont() {
+            currentFontIndex = (currentFontIndex + 1) % fonts.length;
+            document.getElementById('main-hub').style.fontFamily = fonts[currentFontIndex];
+            document.getElementById('main-title').style.fontFamily = fonts[currentFontIndex];
+        }
+
+        // --- INTENSE HOLIDAY GLOW TOGGLE ---
+        function toggleGlow() {
+            document.body.classList.toggle('extreme-glow');
+        }
+
+        // --- SMART QR CODE DETECTOR ---
+        let finalUrl = window.location.href;
+        if (finalUrl.startsWith("file://")) {
+            finalUrl = "https://www.instagram.com/chironartistry/"; // Smart backup
+        }
+
+        new QRCode(document.getElementById("qrcode"), {
+            text: finalUrl,
+            width: 130,
+            height: 130,
+            colorDark : "#051329",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // --- REAL-TIME ULTRA-SLOW CALMING SNOW ENGINE ---
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let flakes = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function createFlakes() {
+            flakes = [];
+            for (let i = 0; i < 85; i++) {
+                flakes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 2.5 + 1, // Flake size
+                    d: Math.random() * 0.4 + 0.1 // Decreased density factor for ultra-slow fallback
+                });
+            }
+        }
+
+        function drawFlakes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.beginPath();
+            for (let i = 0; i < flakes.length; i++) {
+                let f = flakes[i];
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            moveFlakes();
+        }
+
+        function moveFlakes() {
+            for (let i = 0; i < flakes.length; i++) {
+                let f = flakes[i];
+                // Drastically slowed down falling speed logic
+                f.y += 0.4 + f.r * 0.15; 
+                f.x += Math.sin(f.y / 40) * 0.3; // Soft sway left/right
+
+                if (f.y > canvas.height) {
+                    flakes[i] = { x: Math.random() * canvas.width, y: -10, r: f.r, d: f.d };
+                }
+            }
+        }
+
+        createFlakes();
+        // Standard high refresh loop for buttery smooth slow movement
+        function runAnimation() {
+            drawFlakes();
+            requestAnimationFrame(runAnimation);
+        }
+        runAnimation();
+    </script>
+</body>
+</html>
